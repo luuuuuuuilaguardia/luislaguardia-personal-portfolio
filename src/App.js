@@ -6,7 +6,7 @@ const CONFIG = {
   personal: {
     name: "Luis Gabriel Laguardia",
     title: "Software Developer & Cybersecurity Enthusiast",
-    location: "Makati City, Philippines",
+    location: "Bonifacio Global City, Taguig, Philippines",
     phone: "+639491564061",
     email: "laguardialuisgabriel@gmail.com",
     linkedin: "www.linkedin.com/in/devluislaguardia",
