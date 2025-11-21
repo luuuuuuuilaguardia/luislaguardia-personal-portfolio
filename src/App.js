@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, Github, Linkedin, Mail, Phone, Award, Code, Briefcase, GraduationCap, Rocket } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Menu, X, Github, Linkedin, Mail, Phone, Award, Code, Briefcase, GraduationCap, Rocket, ExternalLink, ChevronLeft, ChevronRight, Download, Image as ImageIcon } from 'lucide-react';
 
-// test 1 
-// task:
-// make the projects and awards section clickable... pops up a modal with the project/award details
 // ===== CONFIGURATION FILE =====
 const CONFIG = {
   personal: {
@@ -13,7 +10,8 @@ const CONFIG = {
     phone: "+639491564061",
     email: "laguardialuisgabriel@gmail.com",
     linkedin: "www.linkedin.com/in/devluislaguardia",
-    github: "github.com/luuuuuuuilaguardia"
+    github: "github.com/luuuuuuuilaguardia",
+    resumeUrl: "/LuisGabrieLaguardia-RESUME.pdf"
   },
   
   summary: "Innovative and detail-oriented Software Developer & Cybersecurity Enthusiast with expertise in mobile and web. Passionate about leveraging technology to enhance user experience, optimize security, and drive digital transformation.",
@@ -24,85 +22,277 @@ const CONFIG = {
     "Backend Development": ["Node.js", "Express", "Laravel", "RESTful APIs"],
     "Databases": ["MySQL", "MongoDB", "PostgreSQL"],
     "DevOps & Tools": ["Git", "Docker", "CI/CD", "Linux"],
-    "Cybersecurity": ["Penetration Testing", "Network Analysis", "Ethical Hacking", "CTF"],
+    "Cybersecurity": ["Penetration Testing", "CTF","Network Analysis", "Ethical Hacking", "Web Exploitation", "Reverse Engineering"],
     "Other Skills": ["IoT Development", "Robotics", "System Design", "Project Management"]
   },
   
+
+
+  // ===================== // PROJECTS ... NAKAKALITO KASI -- // =========================================
+
   projects: [
     {
       name: "E-Collect – Smart E-Waste Management System",
       description: "Intelligent IoT-powered e-waste collection system with AI object recognition, mobile app for users, and admin dashboard. Cameras analyze e-waste items, reward users with points convertible to e-cash (GCash), and monitor drop-box capacity.",
       tech: ["IoT", "Computer Vision", "Flutter", "React", "Node.js", "MongoDB", "AI/ML"],
-      highlights: ["AI-powered e-waste detection", "Gamified rewards system", "Real-time capacity monitoring", "E-cash conversion"]
+      highlights: ["AI-powered e-waste detection", "Gamified rewards system", "Real-time capacity monitoring", "E-cash conversion"],
+      images: [
+        "images/ecollect/ecollect1.png",
+        "images/ecollect/ecollect2.png"
+      ],
+      github: "https://github.com/luuuuuuuilaguardia/E-Collect-WebAdmin",
+      demo: "https://e-collect-eight.vercel.app",
+      featured: false
     },
+
+    // ========================================= // SOS Panic Pin // =========================================
+
     {
       name: "SOS Panic Pin – Emergency Alert System",
       description: "IoT panic button system that alerts local barangay authorities with live GPS tracking. Mobile app allows users to add emergency contacts who receive instant alerts. Web dashboard for authorities to track and respond to emergencies.",
       tech: ["IoT", "Flutter", "React", "Node.js", "Express", "MongoDB", "GPS Tracking"],
-      highlights: ["Real-time location tracking", "Multi-recipient alerts", "Authority dashboard", "Emergency contact management"]
+      highlights: ["Real-time location tracking", "Multi-recipient alerts", "Authority dashboard", "Emergency contact management"],
+      images: [
+        "https://via.placeholder.com/800x600/667eea/ffffff?text=SOS+Mobile+App",
+        "https://via.placeholder.com/800x600/764ba2/ffffff?text=Tracking+Dashboard",
+        "https://via.placeholder.com/800x600/667eea/ffffff?text=IoT+Device"
+      ],
+      github: "https://github.com/luuuuuuuilaguardia/panic-pin-frontend",
+      demo: "https://panic-pin-frontend.vercel.app",
+      featured: false
     },
+
+    // ========================================= // Scam See You // =========================================
+    
     {
       name: "Scam See You – Scam Detection Extension",
       description: "Chrome extension powered by trained ML model to detect potential scam websites and phishing attempts. Built using scraped datasets from Kaggle and other sources for comprehensive scam pattern recognition.",
       tech: ["Chrome Extension", "Machine Learning", "Python", "TensorFlow", "JavaScript"],
-      highlights: ["Real-time scam detection", "ML-powered analysis", "Browser integration", "Custom trained model"]
+      highlights: ["Real-time scam detection", "ML-powered analysis", "Browser integration", "Custom trained model"],
+      images: [
+        "/images/scamseeyou/scamseeyou1.png",
+        "/images/scamseeyou/scamseeyou2.png"
+      ],
+      github: "https://github.com/luuuuuuuilaguardia/AI-AI-Delas-alas/tree/scam-check",
+      demo: "",
+      featured: false
     },
     {
       name: "LOLA NENA – Credit Scoring Tracker",
       description: "Innovative credit scoring and tracking system proposed to banking institutions during hackathon. Analyzes user financial behavior and provides credit worthiness assessments.",
       tech: ["React", "Node.js", "MongoDB", "Data Analytics"],
-      highlights: ["Credit score algorithms", "User behavior analysis", "Banking integration", "Hackathon finalist project"]
+      highlights: ["Credit score algorithms", "User behavior analysis", "Banking integration", "Hackathon finalist project"],
+      images: [
+        "https://via.placeholder.com/800x600/667eea/ffffff?text=LOLA+NENA+Dashboard",
+        "https://via.placeholder.com/800x600/764ba2/ffffff?text=Credit+Analysis"
+      ],
+      github: "https://github.com/luuuuuuuilaguardia/lola-nena",
+      demo: ""
     },
+
+    // ========================================= // Splitwise Clone // =========================================
+   
     {
       name: "Splitwise Clone – Bill Splitting App",
       description: "Social bill-splitting application that simplifies group expense management. Share bills via QR codes, manage contacts, and track who owes what with an intuitive interface.",
       tech: ["Flutter", "Node.js", "Express", "MongoDB"],
-      highlights: ["QR code sharing", "Contact integration", "Expense tracking", "Real-time synchronization"]
+      highlights: ["QR code sharing", "Contact integration", "Expense tracking", "Real-time synchronization"],
+      images: [
+        "https://via.placeholder.com/800x600/667eea/ffffff?text=Splitwise+Home",
+        "https://via.placeholder.com/800x600/764ba2/ffffff?text=QR+Sharing"
+      ],
+      github: "https://github.com/luuuuuuuilaguardia/splitwise-clone",
+      demo: ""
     },
+
+    // ========================================= // EcoTrack // =========================================
+    
     {
       name: "EcoTrack – IoT Energy Monitoring System",
       description: "IoT-based energy monitoring platform inspired by Meralco system with real-time power tracking, usage history, and cost computation.",
       tech: ["Flutter", "React", "Node.js", "MongoDB", "IoT"],
-      highlights: ["Smart plug integration", "Real-time tracking", "Energy-saving insights"]
+      highlights: ["Smart plug integration", "Real-time tracking", "Energy-saving insights"],
+      images: ["https://via.placeholder.com/800x600/667eea/ffffff?text=EcoTrack+Dashboard"],
+      github: "https://github.com/luuuuuuuilaguardia/ecotrack",
+      demo: ""
     },
+
+    // ========================================= // Improved Tic-Tac-Toe // =========================================
+   
     {
       name: "Improved Tic-Tac-Toe",
       description: "Enhanced version of the classic Tic-Tac-Toe game with advanced AI opponent, multiple difficulty levels, and modern UI/UX design.",
       tech: ["JavaScript", "React", "Game Logic"],
-      highlights: ["AI opponent", "Multiple difficulty modes", "Score tracking"]
+      highlights: ["AI opponent", "Multiple difficulty modes", "Score tracking"],
+      images: ["https://via.placeholder.com/800x600/667eea/ffffff?text=Tic-Tac-Toe+Game"],
+      github: "https://github.com/luuuuuuuilaguardia/tictactoe",
+      demo: ""
     },
+
+    // ========================================= // Diffie-Hellman Key Exchange Chat System // =========================================
+
     {
       name: "Diffie-Hellman Key Exchange Chat System",
       description: "Secure messaging application with end-to-end encryption implementation using Diffie-Hellman key exchange protocol.",
       tech: ["Python", "Cryptography", "Socket Programming"],
-      highlights: ["End-to-end encryption", "Secure key exchange", "Real-time messaging"]
+      highlights: ["End-to-end encryption", "Secure key exchange", "Real-time messaging"],
+      images: ["https://via.placeholder.com/800x600/667eea/ffffff?text=Secure+Chat"],
+      github: "https://github.com/luuuuuuuilaguardia/dh-chat",
+      demo: ""
     },
+
+    // ========================================= // E-Jeep QR Payment System // =========================================
+
     {
       name: "E-Jeep QR Payment System",
       description: "QR-based fare payment system for public transportation with secure wallet transactions and automatic balance deduction.",
       tech: ["Python", "KivyMD", "SQLite"],
-      highlights: ["QR code generation", "Secure transactions", "Automatic deduction"]
+      highlights: ["QR code generation", "Secure transactions", "Automatic deduction"],
+      images: ["https://via.placeholder.com/800x600/667eea/ffffff?text=E-Jeep+Payment"],
+      github: "https://github.com/luuuuuuuilaguardia/ejeep-qr",
+      demo: ""
     },
+
+    // ========================================= // Facebook & Instagram Clone // =========================================
+
     {
       name: "Facebook & Instagram Clone",
       description: "Full-featured social media application with modern UI and real-time capabilities including chat and post interactions.",
       tech: ["Flutter", "Express", "MongoDB"],
-      highlights: ["Authentication", "Real-time chat", "Post interactions"]
+      highlights: ["Authentication", "Real-time chat", "Post interactions"],
+      images: ["https://via.placeholder.com/800x600/667eea/ffffff?text=Social+Media+Feed"],
+      github: "https://github.com/luuuuuuuilaguardia/social-clone",
+      demo: ""
     }
+    //
   ],
   
+
+  // ===================================== AWARDS....
   awards: [
-    { title: "Best App Award #1", event: "National University Manila Techfiesta", year: "2024" },
-    { title: "Champion", event: "JPCS Programming Competition", year: "2022" },
-    { title: "Finalist", event: "CoinsPH Hackathon", year: "2023" },
-    { title: "Finalist", event: "Hackfest 2024 - GDSC Ateneo de Manila", year: "2024" },
-    { title: "Finalist", event: "Trend Micro Capture the Flag", year: "2024" },
-    { title: "4th Place", event: "International Robotics Competition", year: "2024" },
-    // { title: "Finalist", event: "Kaya Founders Hackathon", year: "2024" },
-    { title: "2nd & 3rd Place", event: "Capture the Flag - TIP Quezon City", year: "2025" },
-    { title: "2nd Place", event: "Alertong Arduino Hackathon", year: "2025" },
-    { title: "Finalist", event: "Algolympics 2025 - UP Diliman", year: "2025" },
-    { title: "Finalist", event: "PacketHacks IoT Conference", year: "2025" }
+    { 
+      title: "Best App Award #1", 
+      event: "National University Manila Techfiesta", 
+      year: "2024",
+      description: "Recognized for innovative mobile application development with outstanding UI/UX and functionality.",
+      images: [
+        "images/techfiesta/techfiesta1.jpeg",
+        "images/techfiesta/techfiesta2.jpeg",
+        "images/techfiesta/techfiesta3.jpeg"
+      ]
+    },
+    { 
+      title: "Champion", 
+      event: "JPCS Programming Competition", 
+      year: "2022",
+      description: "First place winner in competitive programming challenge, solving complex algorithmic problems.",
+      images: [
+        "images/jpcs-compe/jpcs1.jpg",
+        "images/jpcs-compe/jpcs2.jpg"
+      ]
+    },
+    { 
+      title: "Finalist", 
+      event: "CoinsPH Hackathon", 
+      year: "2023",
+      description: "Developed fintech solution for digital payments and cryptocurrency integration.",
+      images: ["/images/coinsph/coins.png"]
+    },
+    { 
+      title: "Finalist", 
+      event: "Hackfest 2024 - GDSC Ateneo de Manila", 
+      year: "2024",
+      description: "Built innovative tech solution during 24-hour hackathon with Google Developer Student Club.",
+      images: [
+        "images/admu/gdsc1.jpeg",
+        "images/admu/gdsc2.png",
+        "images/admu/gdsc3.jpg"
+      ]
+    },
+    { 
+      title: "Finalist", 
+      event: "Trend Micro Capture the Flag", 
+      year: "2024",
+      description: "Competed in cybersecurity CTF competition, demonstrating ethical hacking and security skills.",
+      images: [
+        
+        "images/trendmicro/tmctf1.png",
+        "images/trendmicro/tmctf4.jpg",
+
+
+      ]
+    },
+    { 
+      title: "4th Place", 
+      event: "International Robotics Competition", 
+      year: "2024",
+      description: "Designed and programmed autonomous robot for international competition.",
+      images: [
+        "images/umak/robotics3.png",
+        "images/umak/robotics2.png",
+        "images/umak/robotics1.png",
+        "images/umak/robotics4.png",
+        "images/umak/robotics5.png"
+
+      ]
+    },
+    { 
+      title: "2nd & 3rd Place", 
+      event: "Capture the Flag - TIP Quezon City", 
+      year: "2025",
+      description: "Multiple podium finishes in cybersecurity challenges and penetration testing scenarios.",
+      images: [
+
+        "images/tip/ctf1.jpg",
+        "images/tip/ctf2.jpg",
+        "images/tip/ctf4.jpg",
+        "images/tip/ctf3.jpg"
+
+      ]
+    },
+    { 
+      title: "2nd Place", 
+      event: "Alertong Arduino Hackathon", 
+      year: "2025",
+      description: "Developed IoT emergency alert system using Arduino and mobile integration.",
+      images: [
+
+        "images/sti/arduino1.png",
+        "images/sti/arduino2.png",
+        "images/sti/arduino5.png",
+        "images/sti/arduino4.png"
+
+      ]
+    },
+    { 
+      title: "Finalist", 
+      event: "Algolympics 2025 - UP Diliman", 
+      year: "2025",
+      description: "Competed in algorithmic programming olympiad at University of the Philippines.",
+      images: [
+        
+        "images/up/algo1.jpg",
+        "images/up/algo2.jpeg",
+        "images/up/algo3.png"
+
+      ]
+    },
+    { 
+      title: "Finalist", 
+      event: "PacketHacks IoT Conference", 
+      year: "2025",
+      description: "Showcased IoT project integrating hardware, software, and cloud services.",
+      images: [
+        
+        "images/smx/iot1.png",
+        "images/smx/iot2.png",
+        "images/smx/iot3.png",
+        "images/smx/iot4.png",
+        "images/smx/iot5.png"
+
+
+      ]
+    }
   ],
   
   education: {
@@ -132,6 +322,17 @@ const App = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedAward, setSelectedAward] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  // Refs for scroll animations
+  const skillsRef = useRef(null);
+  const projectsRef = useRef(null);
+  const experienceRef = useRef(null);
+  const awardsRef = useRef(null);
+  const educationRef = useRef(null);
+  const contactRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -141,12 +342,88 @@ const App = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // scroll anim
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    const refs = [skillsRef, projectsRef, experienceRef, awardsRef, educationRef, contactRef];
+    refs.forEach(ref => {
+      if (ref.current) observer.observe(ref.current);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // ESC key handler
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        closeProjectModal();
+        closeAwardModal();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, []);
+
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
       setActiveSection(id);
       setMenuOpen(false);
+    }
+  };
+
+  const openProjectModal = (project) => {
+    setSelectedProject(project);
+    setCurrentImageIndex(0);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeProjectModal = () => {
+    setSelectedProject(null);
+    setCurrentImageIndex(0);
+    document.body.style.overflow = 'unset';
+  };
+
+  const openAwardModal = (award) => {
+    setSelectedAward(award);
+    setCurrentImageIndex(0);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeAwardModal = () => {
+    setSelectedAward(null);
+    setCurrentImageIndex(0);
+    document.body.style.overflow = 'unset';
+  };
+
+  const nextImage = () => {
+    const images = selectedProject?.images || selectedAward?.images;
+    if (images) {
+      setCurrentImageIndex((prev) => prev === images.length - 1 ? 0 : prev + 1);
+    }
+  };
+
+  const prevImage = () => {
+    const images = selectedProject?.images || selectedAward?.images;
+    if (images) {
+      setCurrentImageIndex((prev) => prev === 0 ? images.length - 1 : prev - 1);
     }
   };
 
@@ -168,6 +445,18 @@ const App = () => {
 
         .app {
           min-height: 100vh;
+        }
+
+        /* Scroll Animations */
+        .section {
+          opacity: 0;
+          transform: translateY(50px);
+          transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .section.animate-in {
+          opacity: 1;
+          transform: translateY(0);
         }
 
         /* Navigation */
@@ -351,12 +640,6 @@ const App = () => {
           transform: translateY(-3px);
         }
 
-        /* Section Styles */
-        .section {
-          padding: 5rem 5%;
-          position: relative;
-        }
-
         .section-title {
           font-size: 2.5rem;
           text-align: center;
@@ -374,6 +657,7 @@ const App = () => {
           gap: 2rem;
           max-width: 1200px;
           margin: 0 auto;
+          padding: 0 2rem;
         }
 
         .skill-category {
@@ -427,6 +711,7 @@ const App = () => {
           gap: 2rem;
           max-width: 1200px;
           margin: 0 auto;
+          padding: 0 2rem;
         }
 
         .project-card {
@@ -436,6 +721,21 @@ const App = () => {
           padding: 2rem;
           border: 1px solid rgba(255, 255, 255, 0.1);
           transition: all 0.3s ease;
+          cursor: pointer;
+          position: relative;
+        }
+
+        .project-card.featured::before {
+          content: 'FEATURED';
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          padding: 0.3rem 0.8rem;
+          border-radius: 20px;
+          font-size: 0.7rem;
+          font-weight: bold;
+          letter-spacing: 1px;
         }
 
         .project-card:hover {
@@ -496,6 +796,7 @@ const App = () => {
           gap: 1.5rem;
           max-width: 1200px;
           margin: 0 auto;
+          padding: 0 2rem;
         }
 
         .award-card {
@@ -505,11 +806,13 @@ const App = () => {
           padding: 1.5rem;
           border-left: 4px solid #667eea;
           transition: all 0.3s ease;
+          cursor: pointer;
         }
 
         .award-card:hover {
           transform: translateX(10px);
           border-left-color: #764ba2;
+          box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
         }
 
         .award-title {
@@ -673,6 +976,278 @@ const App = () => {
           border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        /* Modal Styles */
+        .modal-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.9);
+          z-index: 2000;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 2rem;
+          animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+
+        .modal-content {
+          background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+          border-radius: 20px;
+          max-width: 900px;
+          width: 100%;
+          max-height: 90vh;
+          overflow-y: auto;
+          position: relative;
+          border: 2px solid rgba(102, 126, 234, 0.3);
+          animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .modal-close {
+          position: absolute;
+          top: 1.5rem;
+          right: 1.5rem;
+          background: rgba(255, 255, 255, 0.1);
+          border: none;
+          color: #fff;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s ease;
+          z-index: 10;
+        }
+
+        .modal-close:hover {
+          background: rgba(255, 0, 0, 0.3);
+          transform: rotate(90deg);
+        }
+
+        .modal-image-section {
+          position: relative;
+          width: 100%;
+          height: 400px;
+          background: #000;
+          border-radius: 20px 20px 0 0;
+          overflow: hidden;
+        }
+
+        .modal-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .modal-nav-btn {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          background: rgba(102, 126, 234, 0.8);
+          border: none;
+          color: #fff;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s ease;
+          z-index: 5;
+        }
+
+        .modal-nav-btn:hover {
+          background: rgba(102, 126, 234, 1);
+          transform: translateY(-50%) scale(1.1);
+        }
+
+        .modal-nav-btn.prev {
+          left: 1rem;
+        }
+
+        .modal-nav-btn.next {
+          right: 1rem;
+        }
+
+        .modal-image-indicators {
+          position: absolute;
+          bottom: 1rem;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          gap: 0.5rem;
+          z-index: 5;
+        }
+
+        .image-indicator {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.5);
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+
+        .image-indicator.active {
+          background: #667eea;
+          width: 30px;
+          border-radius: 5px;
+        }
+
+        .modal-body {
+          padding: 2rem;
+        }
+
+        .modal-project-name,
+        .modal-award-title {
+          font-size: 2rem;
+          margin-bottom: 1rem;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .modal-project-description,
+        .modal-award-description {
+          color: #d0d0d0;
+          line-height: 1.8;
+          margin-bottom: 1.5rem;
+          font-size: 1.1rem;
+        }
+
+        .modal-tech-stack {
+          margin-bottom: 1.5rem;
+        }
+
+        .modal-tech-title {
+          color: #667eea;
+          font-size: 1.1rem;
+          margin-bottom: 0.8rem;
+          font-weight: 600;
+        }
+
+        .modal-tech-tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.8rem;
+        }
+
+        .modal-tech-tag {
+          background: rgba(102, 126, 234, 0.2);
+          padding: 0.6rem 1.2rem;
+          border-radius: 25px;
+          font-size: 0.95rem;
+          border: 1px solid rgba(102, 126, 234, 0.4);
+        }
+
+        .modal-highlights {
+          margin-bottom: 2rem;
+        }
+
+        .modal-highlights-title {
+          color: #764ba2;
+          font-size: 1.1rem;
+          margin-bottom: 0.8rem;
+          font-weight: 600;
+        }
+
+        .modal-highlights-list {
+          list-style: none;
+        }
+
+        .modal-highlights-list li {
+          padding: 0.8rem 0;
+          color: #d0d0d0;
+          position: relative;
+          padding-left: 2rem;
+          line-height: 1.6;
+        }
+
+        .modal-highlights-list li::before {
+          content: '✓';
+          position: absolute;
+          left: 0;
+          color: #667eea;
+          font-weight: bold;
+          font-size: 1.3rem;
+        }
+
+        .modal-links {
+          display: flex;
+          gap: 1rem;
+          flex-wrap: wrap;
+        }
+
+        .modal-link-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.8rem 1.5rem;
+          border-radius: 30px;
+          text-decoration: none;
+          font-weight: 600;
+          transition: all 0.3s ease;
+          border: 2px solid;
+        }
+
+        .modal-link-btn.github {
+          background: transparent;
+          color: #fff;
+          border-color: #667eea;
+        }
+
+        .modal-link-btn.github:hover {
+          background: #667eea;
+          transform: translateY(-3px);
+        }
+
+        .modal-link-btn.demo {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: #fff;
+          border-color: transparent;
+        }
+
+        .modal-link-btn.demo:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+        }
+
+        .modal-link-btn:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+
+        .modal-link-btn:disabled:hover {
+          transform: none;
+        }
+
+        .modal-award-event {
+          color: #a8a8a8;
+          font-size: 1.1rem;
+          margin-bottom: 1.5rem;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
           .nav-menu {
@@ -707,6 +1282,15 @@ const App = () => {
           .projects-grid {
             grid-template-columns: 1fr;
           }
+
+          .modal-content {
+            margin: 1rem;
+            max-height: 95vh;
+          }
+
+          .modal-image-section {
+            height: 250px;
+          }
         }
       `}</style>
 
@@ -737,6 +1321,9 @@ const App = () => {
             <button className="btn btn-primary" onClick={() => scrollToSection('projects')}>
               <Rocket size={20} /> View Projects
             </button>
+            <a href={CONFIG.personal.resumeUrl} download className="btn btn-secondary">
+              <Download size={20} /> Download Resume
+            </a>
             <button className="btn btn-secondary" onClick={() => scrollToSection('contact')}>
               <Mail size={20} /> Get in Touch
             </button>
@@ -745,7 +1332,7 @@ const App = () => {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="section">
+      <section id="skills" className="section" ref={skillsRef} style={{ padding: '5rem 5%' }}>
         <h2 className="section-title">Technical Skills</h2>
         <div className="skills-grid">
           {Object.entries(CONFIG.skills).map(([category, skills]) => (
@@ -764,11 +1351,15 @@ const App = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="section">
+      <section id="projects" className="section" ref={projectsRef} style={{ padding: '5rem 5%' }}>
         <h2 className="section-title">Featured Projects</h2>
         <div className="projects-grid">
           {CONFIG.projects.map(project => (
-            <div key={project.name} className="project-card">
+            <div 
+              key={project.name} 
+              className={`project-card ${project.featured ? 'featured' : ''}`}
+              onClick={() => openProjectModal(project)}
+            >
               <h3 className="project-name">{project.name}</h3>
               <p className="project-description">{project.description}</p>
               <div className="project-tech">
@@ -777,17 +1368,20 @@ const App = () => {
                 ))}
               </div>
               <ul className="project-highlights">
-                {project.highlights.map(highlight => (
+                {project.highlights.slice(0, 3).map(highlight => (
                   <li key={highlight}>{highlight}</li>
                 ))}
               </ul>
+              <p style={{ marginTop: '1rem', color: '#667eea', fontSize: '0.9rem', fontWeight: '600' }}>
+                Click to view more →
+              </p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="section">
+      <section id="experience" className="section" ref={experienceRef} style={{ padding: '5rem 5%' }}>
         <h2 className="section-title">Work Experience</h2>
         <div className="experience-content">
           <div className="experience-header">
@@ -806,24 +1400,27 @@ const App = () => {
       </section>
 
       {/* Awards Section */}
-      <section id="awards" className="section">
+      <section id="awards" className="section" ref={awardsRef} style={{ padding: '5rem 5%' }}>
         <h2 className="section-title">Awards & Achievements</h2>
         <div className="awards-grid">
           {CONFIG.awards.map((award, idx) => (
-            <div key={idx} className="award-card">
+            <div key={idx} className="award-card" onClick={() => openAwardModal(award)}>
               <h3 className="award-title">
                 <Award size={18} style={{ display: 'inline', marginRight: '8px' }} />
                 {award.title}
               </h3>
               <p className="award-event">{award.event}</p>
               <p className="award-year">{award.year}</p>
+              <p style={{ marginTop: '0.8rem', color: '#667eea', fontSize: '0.85rem', fontWeight: '600' }}>
+                Click to view journey →
+              </p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Education Section */}
-      <section id="education" className="section">
+      <section id="education" className="section" ref={educationRef} style={{ padding: '5rem 5%' }}>
         <h2 className="section-title">Education</h2>
         <div className="education-content">
           <h3 className="education-degree">
@@ -842,7 +1439,7 @@ const App = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="section">
+      <section id="contact" className="section" ref={contactRef} style={{ padding: '5rem 5%' }}>
         <h2 className="section-title">Get In Touch</h2>
         <div className="contact-content">
           <p style={{ fontSize: '1.1rem', marginBottom: '2rem', color: '#d0d0d0' }}>
@@ -876,6 +1473,160 @@ const App = () => {
           {CONFIG.personal.location}
         </p>
       </footer>
+
+      {/* Project Modal */}
+      {selectedProject && (
+        <div className="modal-overlay" onClick={closeProjectModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={closeProjectModal}>
+              <X size={24} />
+            </button>
+
+            {selectedProject.images && selectedProject.images.length > 0 && (
+              <div className="modal-image-section">
+                <img 
+                  src={selectedProject.images[currentImageIndex]} 
+                  alt={`${selectedProject.name} screenshot ${currentImageIndex + 1}`}
+                  className="modal-image"
+                />
+                
+                {selectedProject.images.length > 1 && (
+                  <>
+                    <button className="modal-nav-btn prev" onClick={prevImage}>
+                      <ChevronLeft size={24} />
+                    </button>
+                    <button className="modal-nav-btn next" onClick={nextImage}>
+                      <ChevronRight size={24} />
+                    </button>
+                    
+                    <div className="modal-image-indicators">
+                      {selectedProject.images.map((_, index) => (
+                        <div
+                          key={index}
+                          className={`image-indicator ${index === currentImageIndex ? 'active' : ''}`}
+                          onClick={() => setCurrentImageIndex(index)}
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
+
+            <div className="modal-body">
+              <h2 className="modal-project-name">{selectedProject.name}</h2>
+              <p className="modal-project-description">{selectedProject.description}</p>
+
+              <div className="modal-tech-stack">
+                <h3 className="modal-tech-title">Technology Stack</h3>
+                <div className="modal-tech-tags">
+                  {selectedProject.tech.map(tech => (
+                    <span key={tech} className="modal-tech-tag">{tech}</span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="modal-highlights">
+                <h3 className="modal-highlights-title">Key Features</h3>
+                <ul className="modal-highlights-list">
+                  {selectedProject.highlights.map(highlight => (
+                    <li key={highlight}>{highlight}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="modal-links">
+                {selectedProject.github && (
+                  <a 
+                    href={selectedProject.github} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="modal-link-btn github"
+                  >
+                    <Github size={20} /> View on GitHub
+                  </a>
+                )}
+                {selectedProject.demo && (
+                  <a 
+                    href={selectedProject.demo} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="modal-link-btn demo"
+                  >
+                    <ExternalLink size={20} /> Site
+                  </a>
+                )}
+                {!selectedProject.demo && (
+                  <button className="modal-link-btn demo" disabled>
+                    <ExternalLink size={20} /> Demo Coming Soon
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Award Modal */}
+      {selectedAward && (
+        <div className="modal-overlay" onClick={closeAwardModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={closeAwardModal}>
+              <X size={24} />
+            </button>
+
+            {selectedAward.images && selectedAward.images.length > 0 && (
+              <div className="modal-image-section">
+                <img 
+                  src={selectedAward.images[currentImageIndex]} 
+                  alt={`${selectedAward.title} ${currentImageIndex + 1}`}
+                  className="modal-image"
+                />
+                
+                {selectedAward.images.length > 1 && (
+                  <>
+                    <button className="modal-nav-btn prev" onClick={prevImage}>
+                      <ChevronLeft size={24} />
+                    </button>
+                    <button className="modal-nav-btn next" onClick={nextImage}>
+                      <ChevronRight size={24} />
+                    </button>
+                    
+                    <div className="modal-image-indicators">
+                      {selectedAward.images.map((_, index) => (
+                        <div
+                          key={index}
+                          className={`image-indicator ${index === currentImageIndex ? 'active' : ''}`}
+                          onClick={() => setCurrentImageIndex(index)}
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
+
+            <div className="modal-body">
+              <h2 className="modal-award-title">
+                <Award size={28} style={{ display: 'inline', marginRight: '10px' }} />
+                {selectedAward.title}
+              </h2>
+              <p className="modal-award-event">{selectedAward.event} • {selectedAward.year}</p>
+              <p className="modal-award-description">{selectedAward.description}</p>
+
+              <div className="modal-highlights">
+                {/* <h3 className="modal-highlights-title">Hackathon Journey</h3> */}
+                {/* <ul className="modal-highlights-list"> */}
+                  {/* <li>Competed against talented developers nationwide</li>
+                  <li>Collaborated with team members on innovative solutions</li>
+                  <li>Presented project to industry experts and judges</li>
+                  <li>Gained valuable experience and networking opportunities</li> */}
+                {/* </ul> */}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
