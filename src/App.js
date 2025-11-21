@@ -54,9 +54,10 @@ const CONFIG = {
       tech: ["IoT", "Flutter", "React", "Node.js", "Express", "MongoDB", "GPS Tracking"],
       highlights: ["Real-time location tracking", "Multi-recipient alerts", "Authority dashboard", "Emergency contact management"],
       images: [
-        "https://via.placeholder.com/800x600/667eea/ffffff?text=SOS+Mobile+App",
-        "https://via.placeholder.com/800x600/764ba2/ffffff?text=Tracking+Dashboard",
-        "https://via.placeholder.com/800x600/667eea/ffffff?text=IoT+Device"
+        "images/panicpin/pp1.png",
+        "images/panicpin/pp2.png",
+        "images/panicpin/pp3.png",
+        "images/panicpin/pp4.png"
       ],
       github: "https://github.com/luuuuuuuilaguardia/panic-pin-frontend",
       demo: "https://panic-pin-frontend.vercel.app",
@@ -137,8 +138,8 @@ const CONFIG = {
       description: "Secure messaging application with end-to-end encryption implementation using Diffie-Hellman key exchange protocol.",
       tech: ["Python", "Cryptography", "Socket Programming"],
       highlights: ["End-to-end encryption", "Secure key exchange", "Real-time messaging"],
-      images: ["https://via.placeholder.com/800x600/667eea/ffffff?text=Secure+Chat"],
-      github: "https://github.com/luuuuuuuilaguardia/dh-chat",
+      images: ["/images/chat/diffie1.png"],
+      github: "https://github.com/luuuuuuuilaguardia/DiffieHellman-Encrypted-Chat",
       demo: ""
     },
 
@@ -149,8 +150,13 @@ const CONFIG = {
       description: "QR-based fare payment system for public transportation with secure wallet transactions and automatic balance deduction.",
       tech: ["Python", "KivyMD", "SQLite"],
       highlights: ["QR code generation", "Secure transactions", "Automatic deduction"],
-      images: ["https://via.placeholder.com/800x600/667eea/ffffff?text=E-Jeep+Payment"],
-      github: "https://github.com/luuuuuuuilaguardia/ejeep-qr",
+      images: [
+
+        "",
+        ""     
+           
+      ],
+      github: "https://github.com/luuuuuuuilaguardia/QR-Payment-App-Prototype.git",
       demo: ""
     },
 
