@@ -317,7 +317,7 @@ const CONFIG = {
   }
 };
 
-// ===== MAIN APP COMPONENT =====
+// ===== MAIN APP COMP =====
 const App = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [menuOpen, setMenuOpen] = useState(false);
@@ -325,8 +325,9 @@ const App = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedAward, setSelectedAward] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [imageLoading, setImageLoading] = useState(false); 
   
-  // Refs for scroll animations
+  // refs for scroll anim
   const skillsRef = useRef(null);
   const projectsRef = useRef(null);
   const experienceRef = useRef(null);
@@ -392,30 +393,35 @@ const App = () => {
   const openProjectModal = (project) => {
     setSelectedProject(project);
     setCurrentImageIndex(0);
+    setImageLoading(true); 
     document.body.style.overflow = 'hidden';
   };
 
   const closeProjectModal = () => {
     setSelectedProject(null);
     setCurrentImageIndex(0);
+    setImageLoading(false);
     document.body.style.overflow = 'unset';
   };
 
   const openAwardModal = (award) => {
     setSelectedAward(award);
     setCurrentImageIndex(0);
+    setImageLoading(true); 
     document.body.style.overflow = 'hidden';
   };
 
   const closeAwardModal = () => {
     setSelectedAward(null);
     setCurrentImageIndex(0);
+    setImageLoading(false);
     document.body.style.overflow = 'unset';
   };
 
   const nextImage = () => {
     const images = selectedProject?.images || selectedAward?.images;
     if (images) {
+      setImageLoading(true);
       setCurrentImageIndex((prev) => prev === images.length - 1 ? 0 : prev + 1);
     }
   };
@@ -423,6 +429,7 @@ const App = () => {
   const prevImage = () => {
     const images = selectedProject?.images || selectedAward?.images;
     if (images) {
+      setImageLoading(true);
       setCurrentImageIndex((prev) => prev === 0 ? images.length - 1 : prev - 1);
     }
   };
@@ -1050,12 +1057,16 @@ const App = () => {
           background: #000;
           border-radius: 20px 20px 0 0;
           overflow: hidden;
+          display: flex; /* Added for spinner centering */
+          align-items: center; /* Added for spinner centering */
+          justify-content: center; /* Added for spinner centering */
         }
 
         .modal-image {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          transition: opacity 0.3s ease; /* Optional: for a smoother transition */
         }
 
         .modal-nav-btn {
@@ -1247,6 +1258,34 @@ const App = () => {
           font-size: 1.1rem;
           margin-bottom: 1.5rem;
         }
+
+        .loading-spinner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10; /* Ensure it's above the image container but below nav buttons */
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top: 5px solid #667eea; /* Color of the spinning part */
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -1484,10 +1523,18 @@ const App = () => {
 
             {selectedProject.images && selectedProject.images.length > 0 && (
               <div className="modal-image-section">
+                {imageLoading && (
+                    <div className="loading-spinner-overlay">
+                        <div className="loading-spinner"></div>
+                    </div>
+                )}
+                
                 <img 
                   src={selectedProject.images[currentImageIndex]} 
                   alt={`${selectedProject.name} screenshot ${currentImageIndex + 1}`}
                   className="modal-image"
+                  onLoad={() => setImageLoading(false)} 
+                  style={{ opacity: imageLoading ? 0 : 1 }} 
                 />
                 
                 {selectedProject.images.length > 1 && (
@@ -1504,7 +1551,10 @@ const App = () => {
                         <div
                           key={index}
                           className={`image-indicator ${index === currentImageIndex ? 'active' : ''}`}
-                          onClick={() => setCurrentImageIndex(index)}
+                          onClick={() => {
+                            setImageLoading(true);
+                            setCurrentImageIndex(index);
+                          }}
                         />
                       ))}
                     </div>
@@ -1577,10 +1627,18 @@ const App = () => {
 
             {selectedAward.images && selectedAward.images.length > 0 && (
               <div className="modal-image-section">
+                {imageLoading && (
+                    <div className="loading-spinner-overlay">
+                        <div className="loading-spinner"></div>
+                    </div>
+                )}
+                
                 <img 
                   src={selectedAward.images[currentImageIndex]} 
                   alt={`${selectedAward.title} ${currentImageIndex + 1}`}
                   className="modal-image"
+                  onLoad={() => setImageLoading(false)} 
+                  style={{ opacity: imageLoading ? 0 : 1 }}
                 />
                 
                 {selectedAward.images.length > 1 && (
@@ -1597,7 +1655,10 @@ const App = () => {
                         <div
                           key={index}
                           className={`image-indicator ${index === currentImageIndex ? 'active' : ''}`}
-                          onClick={() => setCurrentImageIndex(index)}
+                          onClick={() => {
+                            setImageLoading(true);
+                            setCurrentImageIndex(index);
+                          }}
                         />
                       ))}
                     </div>
