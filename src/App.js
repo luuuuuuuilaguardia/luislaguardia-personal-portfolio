@@ -217,7 +217,9 @@ const CONFIG = {
         "Pitched our solution to CoinsPH executives and fintech experts",
         "Reached finals among top fintech innovations in the competition"
       ],
-      images: ["/images/coinsph/coins.pn"]
+      images: [
+        "images/coinsph/coinss.png"
+      ]
     },
     { 
       title: "Finalist", 
@@ -290,12 +292,10 @@ const CONFIG = {
         "Proved expertise across various cybersecurity domains"
       ],
       images: [
-
-        "images/tip/ctf1.jpg",
-        "images/tip/ctf2.jpg",
-        "images/tip/ctf4.jpg",
-        "images/tip/ctf3.jpg"
-
+        "images/tip/ctf1.JPG",
+        "images/tip/ctf2.JPG",
+        "images/tip/ctf4.JPG",
+        "images/tip/ctf3.JPG"
       ]
     },
     { 
@@ -332,11 +332,9 @@ const CONFIG = {
         "Reached finals demonstrating strong problem-solving capabilities"
       ],
       images: [
-        
-        "images/up/algo1.jpg",
-        "images/up/algo2.jpeg",
+        "images/up/algo1.JPG",
+        "images/up/algo2.JPEG",
         "images/up/algo3.png"
-
       ]
     },
     { 
@@ -453,32 +451,39 @@ const App = () => {
     return () => document.removeEventListener('keydown', handleEscape);
   }, []);
 
+  const normalizeImagePath = useCallback((url) => {
+    if (!url) return '';
+    return url.startsWith('/') ? url : `/${url}`;
+  }, []);
+
   const preloadImages = useCallback((imageUrls) => {
     imageUrls.forEach((url) => {
-      if (preloadedImages.has(url) || imageErrors.has(url) || loadingImagesRef.current.has(url)) {
+      const normalizedUrl = normalizeImagePath(url);
+      
+      if (preloadedImages.has(url) || imageErrors.has(url) || loadingImagesRef.current.has(normalizedUrl)) {
         return;
       }
       
-      loadingImagesRef.current.add(url);
+      loadingImagesRef.current.add(normalizedUrl);
       
       const img = new Image();
       img.onload = () => {
-        loadingImagesRef.current.delete(url);
+        loadingImagesRef.current.delete(normalizedUrl);
         setPreloadedImages(prev => {
           if (prev.has(url)) return prev;
           return new Set([...prev, url]);
         });
       };
       img.onerror = () => {
-        loadingImagesRef.current.delete(url);
+        loadingImagesRef.current.delete(normalizedUrl);
         setImageErrors(prev => {
           if (prev.has(url)) return prev;
           return new Set([...prev, url]);
         });
       };
-      img.src = url.startsWith('/') ? url : `/${url}`;
+      img.src = normalizedUrl;
     });
-  }, [preloadedImages, imageErrors]);
+  }, [preloadedImages, imageErrors, normalizeImagePath]);
 
   useEffect(() => {
     if (selectedProject?.images) {
@@ -523,6 +528,7 @@ const App = () => {
     
     if (project.images && project.images.length > 0) {
       const firstImage = project.images[0];
+      const normalizedPath = firstImage.startsWith('/') ? firstImage : `/${firstImage}`;
       const img = new Image();
       img.onload = () => {
         setImageLoading(false);
@@ -532,7 +538,7 @@ const App = () => {
         setImageLoading(false);
         setImageErrors(prev => new Set([...prev, firstImage]));
       };
-      img.src = firstImage.startsWith('/') ? firstImage : `/${firstImage}`;
+      img.src = normalizedPath;
     } else {
       setImageLoading(false);
     }
@@ -554,6 +560,7 @@ const App = () => {
     
     if (award.images && award.images.length > 0) {
       const firstImage = award.images[0];
+      const normalizedPath = firstImage.startsWith('/') ? firstImage : `/${firstImage}`;
       const img = new Image();
       img.onload = () => {
         setImageLoading(false);
@@ -563,7 +570,7 @@ const App = () => {
         setImageLoading(false);
         setImageErrors(prev => new Set([...prev, firstImage]));
       };
-      img.src = firstImage.startsWith('/') ? firstImage : `/${firstImage}`;
+      img.src = normalizedPath;
     } else {
       setImageLoading(false);
     }
