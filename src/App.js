@@ -110,7 +110,7 @@ const CONFIG = {
     school: "National University - Philippines",
     major: "Mobile and Web Applications",
     period: "2022 - Present",
-    achievements: ["Security Bank Scholar", "Taguig City Scholar", "Consistent Dean's Lister", "Microsoft Student Ambassador"],
+    achievements: ["Taguig City Scholar", "Security Bank Scholar", "Consistent Dean's Lister", "Microsoft Student Ambassador", "Ayala Young Leaders Organization Candidate"],
   },
   
   experience: {
