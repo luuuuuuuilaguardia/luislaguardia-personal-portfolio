@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Menu, X, Github, Linkedin, Mail, Phone, Award, Code, Briefcase, GraduationCap, Rocket, ExternalLink, ChevronLeft, ChevronRight, Download, Image as ImageIcon } from 'lucide-react';
+// import { Analytics } from "@vercel/analytics/react";
 
 // ===== CONFIGURATION FILE =====
 const CONFIG = {
@@ -175,6 +176,12 @@ const CONFIG = {
       event: "National University Manila Techfiesta", 
       year: "2024",
       description: "Recognized for innovative mobile application development with outstanding UI/UX and functionality.",
+      journey: [
+        "Developed a full-stack mobile application from concept to deployment",
+        "Designed intuitive user interface that impressed judges and users",
+        "Implemented advanced features that set our app apart from competitors",
+        "Received recognition for technical excellence and basis on rubrics"
+      ],
       images: [
         "images/techfiesta/techfiesta1.jpeg",
         "images/techfiesta/techfiesta2.jpeg",
@@ -186,6 +193,13 @@ const CONFIG = {
       event: "JPCS Programming Competition", 
       year: "2022",
       description: "First place winner in competitive programming challenge, solving complex algorithmic problems.",
+      journey: [
+        "Competed against top students in National University",
+        "Solved complex algorithmic challenges under time pressure",
+        "Demonstrated mastery of data structures and algorithms",
+        "Outperformed competitors in multiple rounds of elimination",
+        "Achieved first place through consistent problem-solving excellence"
+      ],
       images: [
         "images/jpcs-compe/jpcs1.jpg",
         "images/jpcs-compe/jpcs2.jpg"
@@ -196,13 +210,27 @@ const CONFIG = {
       event: "CoinsPH Hackathon", 
       year: "2023",
       description: "Developed fintech solution for digital payments and cryptocurrency integration.",
-      images: ["/images/coinsph/coins.png"]
+      journey: [
+        "Built a fintech application integrating digital wallet and crypto features",
+        "Collaborated with a team to create secure payment solutions",
+        "Implemented blockchain technology for transaction security",
+        "Pitched our solution to CoinsPH executives and fintech experts",
+        "Reached finals among top fintech innovations in the competition"
+      ],
+      images: ["/images/coinsph/coins.pn"]
     },
     { 
       title: "Finalist", 
       event: "Hackfest 2024 - GDSC Ateneo de Manila", 
       year: "2024",
-      description: "Built innovative tech solution during 24-hour hackathon with Google Developer Student Club.",
+      description: "Built innovative tech solution hackathon with Google Developer Student Club.",
+      journey: [
+        "Participated in an intense multi day hackathon at Ateneo de Manila",
+        "Leveraged Google Cloud Platform and modern web technologies",
+        "Developed a working prototype from scratch in one day",
+        "Presented our solution to Google engineers and GDSC mentors",
+        "Competed against teams from top universities across the Philippines"
+      ],
       images: [
         "images/admu/gdsc1.jpeg",
         "images/admu/gdsc2.png",
@@ -214,6 +242,13 @@ const CONFIG = {
       event: "Trend Micro Capture the Flag", 
       year: "2024",
       description: "Competed in cybersecurity CTF competition, demonstrating ethical hacking and security skills.",
+      journey: [
+        "Tackled real-world cybersecurity challenges and vulnerabilities",
+        "Applied penetration testing techniques and security analysis",
+        "Solved complex reverse engineering and forensics problems",
+        "Competed against professional security researchers and ethical hackers",
+        "Demonstrated expertise in web exploitation and network security"
+      ],
       images: [
         
         "images/trendmicro/tmctf1.png",
@@ -226,7 +261,14 @@ const CONFIG = {
       title: "4th Place", 
       event: "International Robotics Competition", 
       year: "2024",
-      description: "Designed and programmed autonomous robot for international competition.",
+      description: "Designed and developed an autonomous competition robot featuring a high-precision line-following system optimized with sensor calibration, PID control, and real-time navigation algorithms.",
+      journey: [
+        "Designed and built an autonomous robot from the ground up",
+        "Developed a high-precision line-following system using calibrated sensors and PID control",
+        "Integrated sensors, actuators, and control logic for accurate and responsive navigation",
+        "Competed against teams from universities across the Philippines",
+        "Achieved 4th place in a highly competitive international robotics challenge"
+      ],
       images: [
         "images/umak/robotics3.png",
         "images/umak/robotics2.png",
@@ -241,6 +283,12 @@ const CONFIG = {
       event: "Capture the Flag - TIP Quezon City", 
       year: "2025",
       description: "Multiple podium finishes in cybersecurity challenges and penetration testing scenarios.",
+      journey: [
+        "Competed in multiple CTF categories including web security and cryptography",
+        "Solved challenging security puzzles and exploit development tasks",
+        "Demonstrated advanced skills in ethical hacking and vulnerability assessment",
+        "Proved expertise across various cybersecurity domains"
+      ],
       images: [
 
         "images/tip/ctf1.jpg",
@@ -255,6 +303,13 @@ const CONFIG = {
       event: "Alertong Arduino Hackathon", 
       year: "2025",
       description: "Developed IoT emergency alert system using Arduino and mobile integration.",
+      journey: [
+        "Built an IoT emergency alert system using Arduino microcontrollers",
+        "Integrated hardware sensors with mobile app for real-time alerts",
+        "Developed a complete solution addressing public safety concerns",
+        "Demonstrated the system to judges and emergency response professionals",
+        "Won 2nd place for innovative IoT solution with practical applications"
+      ],
       images: [
 
         "images/sti/arduino1.png",
@@ -269,6 +324,13 @@ const CONFIG = {
       event: "Algolympics 2025 - UP Diliman", 
       year: "2025",
       description: "Competed in algorithmic programming olympiad at University of the Philippines.",
+      journey: [
+        "Competed in prestigious algorithmic programming competition at UP Diliman",
+        "Solved complex mathematical and computational problems",
+        "Applied advanced algorithms and optimization techniques",
+        "Competed against top programming students nationwide",
+        "Reached finals demonstrating strong problem-solving capabilities"
+      ],
       images: [
         
         "images/up/algo1.jpg",
@@ -282,6 +344,13 @@ const CONFIG = {
       event: "PacketHacks IoT Conference", 
       year: "2025",
       description: "Showcased IoT project integrating hardware, software, and cloud services.",
+      journey: [
+        "Developed a comprehensive IoT solution connecting hardware to cloud services",
+        "Integrated multiple sensors and devices with cloud-based analytics",
+        "Presented our IoT architecture to industry professionals and researchers",
+        "Demonstrated real-time data processing and remote device management",
+        "Showcased innovative IoT applications at a major tech conference"
+      ],
       images: [
         
         "images/smx/iot1.png",
@@ -325,7 +394,10 @@ const App = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedAward, setSelectedAward] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [imageLoading, setImageLoading] = useState(false); 
+  const [imageLoading, setImageLoading] = useState(false);
+  const [preloadedImages, setPreloadedImages] = useState(new Set());
+  const [imageErrors, setImageErrors] = useState(new Set());
+  const loadingImagesRef = useRef(new Set()); 
   
   // refs for scroll anim
   const skillsRef = useRef(null);
@@ -381,6 +453,58 @@ const App = () => {
     return () => document.removeEventListener('keydown', handleEscape);
   }, []);
 
+  const preloadImages = useCallback((imageUrls) => {
+    imageUrls.forEach((url) => {
+      if (preloadedImages.has(url) || imageErrors.has(url) || loadingImagesRef.current.has(url)) {
+        return;
+      }
+      
+      loadingImagesRef.current.add(url);
+      
+      const img = new Image();
+      img.onload = () => {
+        loadingImagesRef.current.delete(url);
+        setPreloadedImages(prev => {
+          if (prev.has(url)) return prev;
+          return new Set([...prev, url]);
+        });
+      };
+      img.onerror = () => {
+        loadingImagesRef.current.delete(url);
+        setImageErrors(prev => {
+          if (prev.has(url)) return prev;
+          return new Set([...prev, url]);
+        });
+      };
+      img.src = url.startsWith('/') ? url : `/${url}`;
+    });
+  }, [preloadedImages, imageErrors]);
+
+  useEffect(() => {
+    if (selectedProject?.images) {
+      preloadImages(selectedProject.images);
+    }
+    if (selectedAward?.images) {
+      preloadImages(selectedAward.images);
+    }
+  }, [selectedProject, selectedAward, preloadImages]);
+
+  useEffect(() => {
+    const images = selectedProject?.images || selectedAward?.images;
+    if (!images || images.length <= 1) return;
+
+    const adjacentUrls = [];
+    const prevIndex = currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1;
+    const nextIndex = currentImageIndex === images.length - 1 ? 0 : currentImageIndex + 1;
+    
+    if (images[prevIndex]) adjacentUrls.push(images[prevIndex]);
+    if (images[nextIndex]) adjacentUrls.push(images[nextIndex]);
+    
+    if (adjacentUrls.length > 0) {
+      preloadImages(adjacentUrls);
+    }
+  }, [currentImageIndex, selectedProject, selectedAward, preloadImages]);
+
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -393,8 +517,25 @@ const App = () => {
   const openProjectModal = (project) => {
     setSelectedProject(project);
     setCurrentImageIndex(0);
-    setImageLoading(true); 
+    setImageLoading(true);
+    setImageErrors(new Set());
     document.body.style.overflow = 'hidden';
+    
+    if (project.images && project.images.length > 0) {
+      const firstImage = project.images[0];
+      const img = new Image();
+      img.onload = () => {
+        setImageLoading(false);
+        setPreloadedImages(prev => new Set([...prev, firstImage]));
+      };
+      img.onerror = () => {
+        setImageLoading(false);
+        setImageErrors(prev => new Set([...prev, firstImage]));
+      };
+      img.src = firstImage.startsWith('/') ? firstImage : `/${firstImage}`;
+    } else {
+      setImageLoading(false);
+    }
   };
 
   const closeProjectModal = () => {
@@ -407,8 +548,25 @@ const App = () => {
   const openAwardModal = (award) => {
     setSelectedAward(award);
     setCurrentImageIndex(0);
-    setImageLoading(true); 
+    setImageLoading(true);
+    setImageErrors(new Set());
     document.body.style.overflow = 'hidden';
+    
+    if (award.images && award.images.length > 0) {
+      const firstImage = award.images[0];
+      const img = new Image();
+      img.onload = () => {
+        setImageLoading(false);
+        setPreloadedImages(prev => new Set([...prev, firstImage]));
+      };
+      img.onerror = () => {
+        setImageLoading(false);
+        setImageErrors(prev => new Set([...prev, firstImage]));
+      };
+      img.src = firstImage.startsWith('/') ? firstImage : `/${firstImage}`;
+    } else {
+      setImageLoading(false);
+    }
   };
 
   const closeAwardModal = () => {
@@ -421,16 +579,28 @@ const App = () => {
   const nextImage = () => {
     const images = selectedProject?.images || selectedAward?.images;
     if (images) {
-      setImageLoading(true);
-      setCurrentImageIndex((prev) => prev === images.length - 1 ? 0 : prev + 1);
+      const nextIndex = currentImageIndex === images.length - 1 ? 0 : currentImageIndex + 1;
+      const nextImageUrl = images[nextIndex];
+      
+      if (!preloadedImages.has(nextImageUrl) && !imageErrors.has(nextImageUrl)) {
+        setImageLoading(true);
+      }
+      
+      setCurrentImageIndex(nextIndex);
     }
   };
 
   const prevImage = () => {
     const images = selectedProject?.images || selectedAward?.images;
     if (images) {
-      setImageLoading(true);
-      setCurrentImageIndex((prev) => prev === 0 ? images.length - 1 : prev - 1);
+      const prevIndex = currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1;
+      const prevImageUrl = images[prevIndex];
+      
+      if (!preloadedImages.has(prevImageUrl) && !imageErrors.has(prevImageUrl)) {
+        setImageLoading(true);
+      }
+      
+      setCurrentImageIndex(prevIndex);
     }
   };
 
@@ -1529,13 +1699,35 @@ const App = () => {
                     </div>
                 )}
                 
-                <img 
-                  src={selectedProject.images[currentImageIndex]} 
-                  alt={`${selectedProject.name} screenshot ${currentImageIndex + 1}`}
-                  className="modal-image"
-                  onLoad={() => setImageLoading(false)} 
-                  style={{ opacity: imageLoading ? 0 : 1 }} 
-                />
+                {imageErrors.has(selectedProject.images[currentImageIndex]) ? (
+                  <div style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center', 
+                    height: '100%',
+                    color: '#a8a8a8',
+                    flexDirection: 'column',
+                    gap: '1rem'
+                  }}>
+                    <ImageIcon size={48} />
+                    <p>Image failed to load</p>
+                  </div>
+                ) : (
+                  <img 
+                    src={selectedProject.images[currentImageIndex].startsWith('/') 
+                      ? selectedProject.images[currentImageIndex] 
+                      : `/${selectedProject.images[currentImageIndex]}`} 
+                    alt={`${selectedProject.name} screenshot ${currentImageIndex + 1}`}
+                    className="modal-image"
+                    onLoad={() => setImageLoading(false)} 
+                    onError={() => {
+                      setImageLoading(false);
+                      setImageErrors(prev => new Set([...prev, selectedProject.images[currentImageIndex]]));
+                    }}
+                    style={{ opacity: imageLoading ? 0 : 1 }} 
+                    loading="eager"
+                  />
+                )}
                 
                 {selectedProject.images.length > 1 && (
                   <>
@@ -1552,7 +1744,10 @@ const App = () => {
                           key={index}
                           className={`image-indicator ${index === currentImageIndex ? 'active' : ''}`}
                           onClick={() => {
-                            setImageLoading(true);
+                            const targetImage = selectedProject.images[index];
+                            if (!preloadedImages.has(targetImage) && !imageErrors.has(targetImage)) {
+                              setImageLoading(true);
+                            }
                             setCurrentImageIndex(index);
                           }}
                         />
@@ -1633,13 +1828,35 @@ const App = () => {
                     </div>
                 )}
                 
-                <img 
-                  src={selectedAward.images[currentImageIndex]} 
-                  alt={`${selectedAward.title} ${currentImageIndex + 1}`}
-                  className="modal-image"
-                  onLoad={() => setImageLoading(false)} 
-                  style={{ opacity: imageLoading ? 0 : 1 }}
-                />
+                {imageErrors.has(selectedAward.images[currentImageIndex]) ? (
+                  <div style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center', 
+                    height: '100%',
+                    color: '#a8a8a8',
+                    flexDirection: 'column',
+                    gap: '1rem'
+                  }}>
+                    <ImageIcon size={48} />
+                    <p>Image failed to load</p>
+                  </div>
+                ) : (
+                  <img 
+                    src={selectedAward.images[currentImageIndex].startsWith('/') 
+                      ? selectedAward.images[currentImageIndex] 
+                      : `/${selectedAward.images[currentImageIndex]}`} 
+                    alt={`${selectedAward.title} ${currentImageIndex + 1}`}
+                    className="modal-image"
+                    onLoad={() => setImageLoading(false)} 
+                    onError={() => {
+                      setImageLoading(false);
+                      setImageErrors(prev => new Set([...prev, selectedAward.images[currentImageIndex]]));
+                    }}
+                    style={{ opacity: imageLoading ? 0 : 1 }}
+                    loading="eager"
+                  />
+                )}
                 
                 {selectedAward.images.length > 1 && (
                   <>
@@ -1656,7 +1873,10 @@ const App = () => {
                           key={index}
                           className={`image-indicator ${index === currentImageIndex ? 'active' : ''}`}
                           onClick={() => {
-                            setImageLoading(true);
+                            const targetImage = selectedAward.images[index];
+                            if (!preloadedImages.has(targetImage) && !imageErrors.has(targetImage)) {
+                              setImageLoading(true);
+                            }
                             setCurrentImageIndex(index);
                           }}
                         />
@@ -1675,15 +1895,16 @@ const App = () => {
               <p className="modal-award-event">{selectedAward.event} • {selectedAward.year}</p>
               <p className="modal-award-description">{selectedAward.description}</p>
 
-              <div className="modal-highlights">
-                {/* <h3 className="modal-highlights-title">Hackathon Journey</h3> */}
-                {/* <ul className="modal-highlights-list"> */}
-                  {/* <li>Competed against talented developers nationwide</li>
-                  <li>Collaborated with team members on innovative solutions</li>
-                  <li>Presented project to industry experts and judges</li>
-                  <li>Gained valuable experience and networking opportunities</li> */}
-                {/* </ul> */}
-              </div>
+              {selectedAward.journey && selectedAward.journey.length > 0 && (
+                <div className="modal-highlights">
+                  <h3 className="modal-highlights-title">Journey</h3>
+                  <ul className="modal-highlights-list">
+                    {selectedAward.journey.map((item, idx) => (
+                      <li key={idx}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
         </div>
