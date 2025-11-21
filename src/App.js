@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Github, Linkedin, Mail, Phone, Award, Code, Briefcase, GraduationCap, Rocket } from 'lucide-react';
 
-// ===== CONFIGURATION FILE - EASY TO UPDATE =====
+// test 1 
+// task:
+// make the projects and awards section clickable... pops up a modal with the project/award details
+// ===== CONFIGURATION FILE =====
 const CONFIG = {
   personal: {
     name: "Luis Gabriel Laguardia",
@@ -95,7 +98,7 @@ const CONFIG = {
     { title: "Finalist", event: "Hackfest 2024 - GDSC Ateneo de Manila", year: "2024" },
     { title: "Finalist", event: "Trend Micro Capture the Flag", year: "2024" },
     { title: "4th Place", event: "International Robotics Competition", year: "2024" },
-    { title: "Finalist", event: "Kaya Founders Hackathon", year: "2024" },
+    // { title: "Finalist", event: "Kaya Founders Hackathon", year: "2024" },
     { title: "2nd & 3rd Place", event: "Capture the Flag - TIP Quezon City", year: "2025" },
     { title: "2nd Place", event: "Alertong Arduino Hackathon", year: "2025" },
     { title: "Finalist", event: "Algolympics 2025 - UP Diliman", year: "2025" },
