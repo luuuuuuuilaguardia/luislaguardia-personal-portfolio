@@ -38,8 +38,8 @@ const CONFIG = {
       tech: ["IoT", "Computer Vision", "Flutter", "React", "Node.js", "MongoDB", "AI/ML"],
       highlights: ["AI-powered e-waste detection", "Gamified rewards system", "Real-time capacity monitoring", "E-cash conversion"],
       images: [
-        "images/ecollect/ecollect1.png",
-        "images/ecollect/ecollect2.png"
+        "images/ecollect/ecollect1.webp",
+        "images/ecollect/ecollect2.webp"
       ],
       github: "https://github.com/luuuuuuuilaguardia/E-Collect-WebAdmin",
       demo: "https://e-collect-eight.vercel.app",
@@ -54,10 +54,10 @@ const CONFIG = {
       tech: ["IoT", "Flutter", "React", "Node.js", "Express", "MongoDB", "GPS Tracking"],
       highlights: ["Real-time location tracking", "Multi-recipient alerts", "Authority dashboard", "Emergency contact management"],
       images: [
-        "images/panicpin/pp1.png",
-        "images/panicpin/pp2.png",
-        "images/panicpin/pp3.png",
-        "images/panicpin/pp4.png"
+        "images/panicpin/pp1.webp",
+        "images/panicpin/pp2.webp",
+        "images/panicpin/pp3.webp",
+        "images/panicpin/pp4.webp"
       ],
       github: "https://github.com/luuuuuuuilaguardia/panic-pin-frontend",
       demo: "https://panic-pin-frontend.vercel.app",
@@ -72,8 +72,8 @@ const CONFIG = {
       tech: ["Chrome Extension", "Machine Learning", "Python", "TensorFlow", "JavaScript"],
       highlights: ["Real-time scam detection", "ML-powered analysis", "Browser integration", "Custom trained model"],
       images: [
-        "/images/scamseeyou/scamseeyou1.png",
-        "/images/scamseeyou/scamseeyou2.png"
+        "/images/scamseeyou/scamseeyou1.webp",
+        "/images/scamseeyou/scamseeyou2.webp"
       ],
       github: "https://github.com/luuuuuuuilaguardia/AI-AI-Delas-alas/tree/scam-check",
       demo: "",
@@ -138,7 +138,7 @@ const CONFIG = {
       description: "Secure messaging application with end-to-end encryption implementation using Diffie-Hellman key exchange protocol.",
       tech: ["Python", "Cryptography", "Socket Programming"],
       highlights: ["End-to-end encryption", "Secure key exchange", "Real-time messaging"],
-      images: ["/images/chat/diffie1.png"],
+      images: ["/images/chat/diffie1.webp"],
       github: "https://github.com/luuuuuuuilaguardia/DiffieHellman-Encrypted-Chat",
       demo: ""
     },
@@ -189,9 +189,9 @@ const CONFIG = {
         "Received recognition for technical excellence and basis on rubrics"
       ],
       images: [
-        "images/techfiesta/techfiesta1.jpeg",
-        "images/techfiesta/techfiesta2.jpeg",
-        "images/techfiesta/techfiesta3.jpeg"
+        "images/techfiesta/techfiesta1.webp",
+        "images/techfiesta/techfiesta2.webp",
+        "images/techfiesta/techfiesta3.webp"
       ]
     },
     { 
@@ -207,8 +207,8 @@ const CONFIG = {
         "Achieved first place through consistent problem-solving excellence"
       ],
       images: [
-        "images/jpcs-compe/jpcs1.jpg",
-        "images/jpcs-compe/jpcs2.jpg"
+        "images/jpcs-compe/jpcs1.webp",
+        "images/jpcs-compe/jpcs2.webp"
       ]
     },
     { 
@@ -224,7 +224,7 @@ const CONFIG = {
         "Reached finals among top fintech innovations in the competition"
       ],
       images: [
-        "images/coinsph/coinss.png"
+        "images/coinsph/coinss.webp"
       ]
     },
     { 
@@ -240,9 +240,9 @@ const CONFIG = {
         "Competed against teams from top universities across the Philippines"
       ],
       images: [
-        "images/admu/gdsc1.jpeg",
-        "images/admu/gdsc2.png",
-        "images/admu/gdsc3.jpg"
+        "images/admu/gdsc1.webp",
+        "images/admu/gdsc2.webp",
+        "images/admu/gdsc3.webp"
       ]
     },
     { 
@@ -259,8 +259,8 @@ const CONFIG = {
       ],
       images: [
         
-        "images/trendmicro/tmctf1.png",
-        "images/trendmicro/tmctf4.jpg",
+        "images/trendmicro/tmctf1.webp",
+        "images/trendmicro/tmctf4.webp",
 
 
       ]
@@ -278,11 +278,11 @@ const CONFIG = {
         "Achieved 4th place in a highly competitive international robotics challenge"
       ],
       images: [
-        "images/umak/robotics3.png",
-        "images/umak/robotics2.png",
-        "images/umak/robotics1.png",
-        "images/umak/robotics4.png",
-        "images/umak/robotics5.png"
+        "images/umak/robotics3.webp",
+        "images/umak/robotics2.webp",
+        "images/umak/robotics1.webp",
+        "images/umak/robotics4.webp",
+        "images/umak/robotics5.webp"
 
       ]
     },
@@ -298,10 +298,10 @@ const CONFIG = {
         "Proved expertise across various cybersecurity domains"
       ],
       images: [
-        "images/tip/ctf1.JPG",
-        "images/tip/ctf2.JPG",
-        "images/tip/ctf4.JPG",
-        "images/tip/ctf3.JPG"
+        "images/tip/ctf1.webp",
+        "images/tip/ctf2.webp",
+        "images/tip/ctf4.webp",
+        "images/tip/ctf3.webp"
       ]
     },
     { 
@@ -318,10 +318,10 @@ const CONFIG = {
       ],
       images: [
 
-        "images/sti/arduino1.png",
-        "images/sti/arduino2.png",
-        "images/sti/arduino5.png",
-        "images/sti/arduino4.png"
+        "images/sti/arduino1.webp",
+        "images/sti/arduino2.webp",
+        "images/sti/arduino5.webp",
+        "images/sti/arduino4.webp"
 
       ]
     },
@@ -338,9 +338,9 @@ const CONFIG = {
         "Reached finals demonstrating strong problem-solving capabilities"
       ],
       images: [
-        "images/up/algo1.JPG",
-        "images/up/algo2.JPEG",
-        "images/up/algo3.png"
+        "images/up/algo1.webp",
+        "images/up/algo2.webp",
+        "images/up/algo3.webp"
       ]
     },
     { 
@@ -357,11 +357,11 @@ const CONFIG = {
       ],
       images: [
         
-        "images/smx/iot1.png",
-        "images/smx/iot2.png",
-        "images/smx/iot3.png",
-        "images/smx/iot4.png",
-        "images/smx/iot5.png"
+        "images/smx/iot1.webp",
+        "images/smx/iot2.webp",
+        "images/smx/iot3.webp",
+        "images/smx/iot4.webp",
+        "images/smx/iot5.webp"
 
 
       ]
